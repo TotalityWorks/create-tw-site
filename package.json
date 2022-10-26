@@ -1,0 +1,103 @@
+{
+  "name": "create-tw-site",
+  "version": "0.0.1",
+  "description": "Interactive CLI to quickly set up an opinionated Gatsby project ready to go with WordPress!",
+  "license": "MIT",
+  "author": "@mosesintech",
+  "homepage": "https://TotalityWorks.com/create-tw-site",
+  "main": "./dist/index.js",
+  "scripts": {
+    "prettier": "prettier --write '**/*.ts'",
+    "lint": "eslint '**/*.ts'",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "npm run prettier && npm run lint:fix",
+    "commit": "cz",
+    "build": "rm -rf dist && tsc && chmod +x dist/index.js",
+    "start": "npm run build && node dist/index.js"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run format"
+    ]
+  },
+  "bin": {
+    "create-tw-site": "./dist/index.js"
+  },
+  "keywords": [
+    "create-tw-site",
+    "gatsbyjs",
+    "headless",
+    "wordpress",
+    "shopify",
+    "tailwind",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TotalityWorks/create-tw-site.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TotalityWorks/create-tw-site/issues"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^9.1.4",
+    "ora": "^6.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^9.0.2",
+    "@types/node": "^18.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "commitizen": "^4.2.5",
+    "commitlint": "^17.1.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "types": {
+        "feat": {
+          "description": "A new feature",
+          "title": "Features"
+        },
+        "fix": {
+          "description": "A bug fix",
+          "title": "Bug Fixes"
+        },
+        "docs": {
+          "description": "Documentation only changes",
+          "title": "Documentation"
+        },
+        "style": {
+          "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+          "title": "Styles"
+        },
+        "refactor": {
+          "description": "A code change that neither fixes a bug nor adds a feature",
+          "title": "Code Refactoring"
+        },
+        "test": {
+          "description": "Adding missing tests or correcting existing tests",
+          "title": "Tests"
+        },
+        "chore": {
+          "description": "Other changes that don't modify src or test files",
+          "title": "Chores"
+        }
+      }
+    }
+  }
+}
