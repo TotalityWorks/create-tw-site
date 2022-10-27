@@ -20,6 +20,8 @@
       "npm run format"
     ]
   },
+  "type": "module",
+  "exports": "./dist/index.js",
   "bin": {
     "create-tw-site": "./dist/index.js"
   },
