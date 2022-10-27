@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+import { fileURLToPath } from "url"
 import inquirer from "inquirer"
+import fs from "fs-extra"
+import path from "path"
 
 const flexibleContentComponents: string[] = [
   "Banner",
@@ -69,11 +72,27 @@ const cli = async () => {
     return components
   }
 
+  const createGatsbySite = (siteName: string) => {
+    // eslint-disable-next-line no-underscore-dangle
+    const __filename = fileURLToPath(import.meta.url)
+    const distPath = path.dirname(__filename)
+    const PKG_ROOT = path.join(distPath, "../")
+
+    const srcDir = path.join(PKG_ROOT, "template")
+    const projectDir = `./${siteName}`
+
+    if (fs.existsSync(projectDir)) {
+      throw new Error(`${siteName} already exists.`)
+    }
+
+    fs.copy(srcDir, projectDir)
+
+    console.log(`${siteName} created successfully.`)
+  }
+
   cliResults.siteName = await promptSiteName()
   cliResults.components = await promptComponents()
-
-  // eslint-disable-next-line no-console
-  console.log(cliResults)
+  createGatsbySite(cliResults.siteName)
 }
 
 cli()
