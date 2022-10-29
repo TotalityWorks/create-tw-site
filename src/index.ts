@@ -6,6 +6,7 @@ import path from "path"
 
 // import helpers
 import createFlexibleContentIndex from "./helpers/createFlexibleContentIndex.js"
+import createTemplateInterfaces from "./helpers/createTemplateInterfaces.js"
 
 const flexibleContentComponents: string[] = [
   "Banner",
@@ -89,15 +90,16 @@ const cli = async () => {
     }
 
     fs.copy(srcDir, projectDir)
-
-    console.log(`${siteName} created successfully.`)
   }
 
   cliResults.siteName = await promptSiteName()
   cliResults.components = await promptComponents()
 
   createFlexibleContentIndex(cliResults.components)
+  createTemplateInterfaces(cliResults.components)
   createGatsbySite(cliResults.siteName)
+
+  console.log(`${cliResults.siteName} created successfully.`)
 }
 
 cli()
