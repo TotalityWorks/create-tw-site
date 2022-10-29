@@ -4,6 +4,9 @@ import inquirer from "inquirer"
 import fs from "fs-extra"
 import path from "path"
 
+// import helpers
+import createFlexibleContentIndex from "./helpers/createFlexibleContentIndex.js"
+
 const flexibleContentComponents: string[] = [
   "Banner",
   "CallToAction",
@@ -92,6 +95,8 @@ const cli = async () => {
 
   cliResults.siteName = await promptSiteName()
   cliResults.components = await promptComponents()
+
+  createFlexibleContentIndex(cliResults.components)
   createGatsbySite(cliResults.siteName)
 }
 
