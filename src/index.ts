@@ -7,6 +7,7 @@ import path from "path"
 // import helpers
 import createFlexibleContentIndex from "./helpers/createFlexibleContentIndex.js"
 import createTemplateInterfaces from "./helpers/createTemplateInterfaces.js"
+import createFlexibleContentComponents from "./helpers/createFlexibleContentComponents.js"
 
 const flexibleContentComponents: string[] = [
   "Banner",
@@ -76,6 +77,12 @@ const cli = async () => {
     return components
   }
 
+  const createFlexibleContent = (components: string[]) => {
+    createFlexibleContentIndex(cliResults.components)
+    createTemplateInterfaces(cliResults.components)
+    createFlexibleContentComponents(components)
+  }
+
   const createGatsbySite = (siteName: string) => {
     // eslint-disable-next-line no-underscore-dangle
     const __filename = fileURLToPath(import.meta.url)
@@ -95,8 +102,7 @@ const cli = async () => {
   cliResults.siteName = await promptSiteName()
   cliResults.components = await promptComponents()
 
-  createFlexibleContentIndex(cliResults.components)
-  createTemplateInterfaces(cliResults.components)
+  createFlexibleContent(cliResults.components)
   createGatsbySite(cliResults.siteName)
 
   console.log(`${cliResults.siteName} created successfully.`)

@@ -58,7 +58,8 @@ const FlexibleContent: React.FC<Props> = props => {
   }
 }
 
-export default FlexibleContent`
+export default FlexibleContent
+`
 
   const flexibleContentIndexFileContent = `${imports}${typing}${allComponentsSection}${FlexibleContentComponent}`
 
